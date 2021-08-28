@@ -1,0 +1,31 @@
+{
+  "name": "altce",
+  "version": "0.0.1",
+  "main": "main.js",
+  "repository": "https://github.com/Aimee-MacDonald/altce.git",
+  "author": "Aimee MacDonald <aimeelmacdonald@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "webpack --config webpack.config.js --watch",
+    "test": "jest --config=jest.config.json --watch",
+    "run": "electron .",
+    "package": "webpack --config webpack.config.js && electron-builder"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "babel-loader": "^8.2.2",
+    "electron": "^13.2.3",
+    "electron-builder": "^22.11.7",
+    "enzyme": "^3.11.0",
+    "jest": "^27.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.1",
+    "uuid": "^8.3.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  } 
+}
