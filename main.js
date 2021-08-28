@@ -8,7 +8,7 @@ app.once('ready', () => {
 
   window.setMenu(null)
   window.webContents.openDevTools()
-  window.maximize()
+  window.setFullScreen(true)
   window.loadFile('main.html')
 })
 
