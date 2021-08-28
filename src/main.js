@@ -2,13 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
+import GlobalStyle from './util/GlobalStyle'
+import WorkspaceLayer from './layers/WorkspaceLayer'
+import NavigationLayer from './layers/NavigationLayer'
+import ModalLayer from './layers/ModalLayer'
+
 const MainComponent = () => (
   <StyledMainComponent>
-    <h1>ALTCE</h1>
+    <GlobalStyle/>
+    <WorkspaceLayer/>
+    <NavigationLayer/>
+    <ModalLayer/>
   </StyledMainComponent>
 )
 
 const StyledMainComponent = styled.div`
+  position: relative;
   width: 100vw;
   height: 100vh;
 `
