@@ -12,7 +12,7 @@ const MainComponent = () => (
     <GlobalStyle/>
     <WorkspaceLayer/>
     <NavigationLayer/>
-    {/* <ModalLayer/> */}
+    <ModalLayer/>
   </StyledMainComponent>
 )
 
