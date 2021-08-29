@@ -3,17 +3,21 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
 import GlobalStyle from './util/GlobalStyle'
+import GlobalStateProvider from './util/GlobalState'
+
 import WorkspaceLayer from './layers/WorkspaceLayer'
 import NavigationLayer from './layers/NavigationLayer'
 import ModalLayer from './layers/ModalLayer'
 
 const MainComponent = () => (
-  <StyledMainComponent>
-    <GlobalStyle/>
-    <WorkspaceLayer/>
-    <NavigationLayer/>
-    <ModalLayer/>
-  </StyledMainComponent>
+  <GlobalStateProvider>
+    <StyledMainComponent>
+      <GlobalStyle/>
+      <WorkspaceLayer/>
+      <NavigationLayer/>
+      <ModalLayer/>
+    </StyledMainComponent>
+  </GlobalStateProvider>
 )
 
 const StyledMainComponent = styled.div`

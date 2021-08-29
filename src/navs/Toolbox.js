@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
+
+import { GlobalStateContext } from '../util/GlobalState'
 
 export const Toolbox = () => {
   const [ isOpen, setOpen ] = useState(false)
