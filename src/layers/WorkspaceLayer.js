@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Lists from '../workspaces/Lists/Lists'
+
 export const WorkspaceLayer = () => (
   <StyledWorkspaceLayer>
-    <h1>Workspace Layer</h1>
+    <Lists/>
   </StyledWorkspaceLayer>
 )
 
