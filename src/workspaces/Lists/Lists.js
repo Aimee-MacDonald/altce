@@ -6,23 +6,16 @@ import List from './List/List'
 
 export const Lists = () => {
   const [ lists, setLists ] = useState([])
+  const [ refresh, setRefresh ] = useState(false)
 
   useEffect(() => {
-    if(typeof localStorage.lists === 'undefined'){
-      setLists([{
-        _id: '9898',
-        title: 'List 1',
-        items: []
-      }, {
-        _id: '4343',
-        title: 'List 2',
-        items: []
-      }])
+    if(typeof localStorage.lists !== 'undefined'){
+      setLists(JSON.parse(localStorage.getItem('lists')))
     }
-  }, [])
+  }, [ refresh ])
 
   const addListItem = (listId, newListItem) => {
-    setLists(lists.map(list => list._id !== listId ? list : {
+    const newLists = lists.map(list => list._id !== listId ? list : {
       ...list,
       items: [
         ...list.items, {
@@ -30,11 +23,17 @@ export const Lists = () => {
           value: newListItem
         }
       ]
-    }))
+    })
+
+    setLists(newLists)
+    localStorage.setItem('lists', JSON.stringify(newLists))
   }
+
+  const refreshLists = () => setRefresh(!refresh)
 
   return (
     <StyledLists>
+      <button onClick={refreshLists}>Refresh</button>
       {lists.map(list => (
         <List
           key={list._id}

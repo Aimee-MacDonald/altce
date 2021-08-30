@@ -5,6 +5,7 @@ import { GlobalStateContext } from '../util/GlobalState'
 
 export const Toolbox = () => {
   const [ isOpen, setOpen ] = useState(false)
+  const { setModal, modalOptions } = useContext(GlobalStateContext).modal
 
   return (
     <StyledToolbox
@@ -12,7 +13,7 @@ export const Toolbox = () => {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       >
-      {isOpen && <h1>Toolbox</h1>}
+      <button onClick={() => setModal(modalOptions('create_list'))}>Create List</button>
     </StyledToolbox>
   )
 }
