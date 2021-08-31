@@ -31,6 +31,22 @@ export const Lists = () => {
 
   const refreshLists = () => setRefresh(!refresh)
 
+  const destroyList = listId => {
+    const newLists = lists.filter(list => list._id !== listId)
+    setLists(newLists)
+    localStorage.setItem('lists', JSON.stringify(newLists))
+  }
+
+  const destroyListItem = (listId, itemId) => {
+    const newLists = lists.map(list => list._id !== listId ? list : {
+      ...list,
+      items: list.items.filter(item => item._id !== itemId)
+    })
+
+    setLists(newLists)
+    localStorage.setItem('lists', JSON.stringify(newLists))
+  }
+
   return (
     <StyledLists>
       <button onClick={refreshLists}>Refresh</button>
@@ -40,6 +56,8 @@ export const Lists = () => {
           title={list.title}
           items={list.items}
           addListItem={newListItem => addListItem(list._id, newListItem)}
+          destroyListItem={itemId => destroyListItem(list._id, itemId)}
+          destroyList={() => destroyList(list._id)}
         />
       ))}
     </StyledLists>
