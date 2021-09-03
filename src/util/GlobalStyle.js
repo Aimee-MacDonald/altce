@@ -6,10 +6,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  body {
-    background-color: rgb(8, 4, 8);
-  }
-
   ul {
     list-style-type: none;
   }

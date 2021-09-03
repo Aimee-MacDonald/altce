@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import GlobalStyle from './util/GlobalStyle'
 import GlobalStateProvider from './util/GlobalState'
+import SettingsProvider from './util/Settings'
 
 import WorkspaceLayer from './layers/WorkspaceLayer'
 import NavigationLayer from './layers/NavigationLayer'
@@ -11,12 +12,14 @@ import ModalLayer from './layers/ModalLayer'
 
 const MainComponent = () => (
   <GlobalStateProvider>
-    <StyledMainComponent>
-      <GlobalStyle/>
-      <WorkspaceLayer/>
-      <NavigationLayer/>
-      <ModalLayer/>
-    </StyledMainComponent>
+    <SettingsProvider>
+      <StyledMainComponent>
+        <GlobalStyle/>
+        <WorkspaceLayer/>
+        <NavigationLayer/>
+        <ModalLayer/>
+      </StyledMainComponent>
+    </SettingsProvider>
   </GlobalStateProvider>
 )
 
