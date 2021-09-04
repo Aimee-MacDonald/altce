@@ -1,8 +1,17 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 
 export default ({ children }) => {
+  const [ theme, setTheme ] = useState({
+    background: '#000000',
+    navs: '#000000',
+    selected: '#000000',
+    unselected: '#000000',
+    positive_affirmation: '#000000',
+    negative_affirmation: '#000000'
+  })
+
   const settings = {
-    baseColor: 'rgb(8, 4, 8)'
+    theme: { theme, setTheme }
   }
 
   return(

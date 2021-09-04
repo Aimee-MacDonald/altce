@@ -1,22 +1,31 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { SettingsContext } from '../util/Settings'
+import { GlobalStateContext } from '../util/GlobalState'
 
 import Lists from '../workspaces/Lists/Lists'
+import Settings from '../workspaces/Settings/Settings'
 
 export const WorkspaceLayer = () => {
-  const settings = useContext(SettingsContext)
+  const { theme, setTheme } = useContext(SettingsContext).theme
+  const { workspace, workspaceOptions } = useContext(GlobalStateContext).workspace
+
+  useEffect(() => {
+    const userSettings = JSON.parse(localStorage.getItem('settings'))
+    if(!!userSettings) setTheme(userSettings.theme)
+  }, [])
 
   return (
-    <StyledWorkspaceLayer baseColor={settings.baseColor}>
-      <Lists/>
+    <StyledWorkspaceLayer theme={theme}>
+      {workspace === workspaceOptions('lists') && <Lists/>}
+      {workspace === workspaceOptions('settings') && <Settings/>}
     </StyledWorkspaceLayer>
   )
 }
 
 const StyledWorkspaceLayer = styled.div`
-  background-color: ${({ baseColor }) => baseColor};
+  background-color: ${({ theme }) => theme.background};
   position: fixed;
   z-index: 10;
   width: 100%;

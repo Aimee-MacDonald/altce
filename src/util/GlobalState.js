@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react'
 
 export default ({ children }) => {
   const [ modal, setModal ] = useState(0)
+  const [ workspace, setWorkspace ] = useState(0)
 
   const modalOptions = newModal => ([
       'default',
@@ -9,7 +10,13 @@ export default ({ children }) => {
     ].indexOf(newModal)
   )
 
+  const workspaceOptions = newWorkspace => ([
+    'lists',
+    'settings'
+  ].indexOf(newWorkspace))
+
   const state = {
+    workspace: { workspace, setWorkspace, workspaceOptions },
     modal: { modal, setModal, modalOptions }
   }
 

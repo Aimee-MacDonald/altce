@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
+
+import { SettingsContext } from '../../../util/Settings'
 
 export const List = ({ title, items, addListItem, destroyListItem, destroyList }) => {
   const [ isOpen, setOpen ] = useState(false)
+  const { theme } = useContext(SettingsContext).theme
 
   const addItem = e => {
     e.preventDefault()
@@ -13,6 +16,7 @@ export const List = ({ title, items, addListItem, destroyListItem, destroyList }
   return (
     <StyledList
       isOpen={isOpen}
+      theme={theme}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       >
@@ -39,7 +43,7 @@ export const List = ({ title, items, addListItem, destroyListItem, destroyList }
 }
 
 const StyledList = styled.div`
-  background-color: ${({ isOpen }) => isOpen ? 'green' : 'purple'};
+  background-color: ${({ isOpen, theme }) => isOpen ? theme.selected : theme.unselected};
   padding: ${({ isOpen }) => isOpen ? '1.6' : '0.4'}rem;
   border-radius: 0.4rem;
   transition: 0.4s;
@@ -51,7 +55,7 @@ const StyledList = styled.div`
   }
 
   .listHeader button, li button {
-    background-color: red;
+    background-color: ${({ theme }) => theme.negative_affirmation};
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
