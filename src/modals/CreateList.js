@@ -5,7 +5,9 @@ import { v4 } from 'uuid'
 import { GlobalStateContext } from '../util/GlobalState'
 
 export const CreateList = () => {
-  const { setModal } = useContext(GlobalStateContext).modal
+  const globalState = useContext(GlobalStateContext)
+  const { setModal } = globalState.modal
+  const { toggleRefreshLists } = globalState.lists
 
   const createList = e => {
     e.preventDefault()
@@ -20,6 +22,7 @@ export const CreateList = () => {
     ]))
 
     e.target.listName.value = ''
+    toggleRefreshLists()
     setModal(0)
   }
 

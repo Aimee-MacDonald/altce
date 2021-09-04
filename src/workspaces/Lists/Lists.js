@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { v4 } from 'uuid'
+
+import { GlobalStateContext } from '../../util/GlobalState'
 
 import List from './List/List'
 
 export const Lists = () => {
   const [ lists, setLists ] = useState([])
-  const [ refresh, setRefresh ] = useState(false)
+  const { refreshLists, toggleRefreshLists } = useContext(GlobalStateContext).lists
 
   useEffect(() => {
     if(typeof localStorage.lists !== 'undefined'){
       setLists(JSON.parse(localStorage.getItem('lists')))
     }
-  }, [ refresh ])
+  }, [ refreshLists ])
 
   const addListItem = (listId, newListItem) => {
     const newLists = lists.map(list => list._id !== listId ? list : {
@@ -28,8 +30,6 @@ export const Lists = () => {
     setLists(newLists)
     localStorage.setItem('lists', JSON.stringify(newLists))
   }
-
-  const refreshLists = () => setRefresh(!refresh)
 
   const destroyList = listId => {
     const newLists = lists.filter(list => list._id !== listId)
@@ -49,7 +49,6 @@ export const Lists = () => {
 
   return (
     <StyledLists>
-      <button onClick={refreshLists}>Refresh</button>
       {lists.map(list => (
         <List
           key={list._id}
