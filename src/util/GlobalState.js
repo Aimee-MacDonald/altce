@@ -7,7 +7,8 @@ export default ({ children }) => {
 
   const modalOptions = newModal => ([
       'default',
-      'create_list'
+      'create_list',
+      'treasury'
     ].indexOf(newModal)
   )
 

@@ -20,6 +20,7 @@ export const Navigation = () => {
         <div>
           <button onClick={() => setWorkspace(workspaceOptions('lists'))}>Lists</button>
           <button onClick={() => setWorkspace(workspaceOptions('settings'))}>Settings</button>
+          <button onClick={() => setWorkspace(workspaceOptions('treasury'))}>Treasury</button>
         </div>
       )}
     </StyledNavigation>

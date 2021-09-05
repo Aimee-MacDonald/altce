@@ -6,6 +6,7 @@ import { GlobalStateContext } from '../util/GlobalState'
 
 import Lists from '../workspaces/Lists/Lists'
 import Settings from '../workspaces/Settings/Settings'
+import Treasury from '../workspaces/Treasury/Treasury'
 
 export const WorkspaceLayer = () => {
   const { theme, setTheme } = useContext(SettingsContext).theme
@@ -20,6 +21,7 @@ export const WorkspaceLayer = () => {
     <StyledWorkspaceLayer theme={theme}>
       {workspace === workspaceOptions('lists') && <Lists/>}
       {workspace === workspaceOptions('settings') && <Settings/>}
+      {workspace === workspaceOptions('treasury') && <Treasury/>}
     </StyledWorkspaceLayer>
   )
 }
