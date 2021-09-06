@@ -8,7 +8,7 @@ import List from './List/List'
 
 export const Lists = () => {
   const [ lists, setLists ] = useState([])
-  const { refreshLists, toggleRefreshLists } = useContext(GlobalStateContext).lists
+  const { refreshLists } = useContext(GlobalStateContext).lists
 
   useEffect(() => {
     if(typeof localStorage.lists !== 'undefined'){

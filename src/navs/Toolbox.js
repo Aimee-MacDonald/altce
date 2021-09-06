@@ -6,7 +6,9 @@ import { SettingsContext } from '../util/Settings'
 
 export const Toolbox = () => {
   const [ isOpen, setOpen ] = useState(false)
-  const { setModal, modalOptions } = useContext(GlobalStateContext).modal
+  const globalState = useContext(GlobalStateContext)
+  const { setModal, modalOptions } = globalState.modal
+  const { workspace, workspaceOptions } = globalState.workspace
   const { theme } = useContext(SettingsContext).theme
 
   return (
@@ -16,7 +18,21 @@ export const Toolbox = () => {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       >
-      {isOpen && <button onClick={() => setModal(modalOptions('create_list'))}>Create List</button>}
+      {isOpen && (
+        <div>
+          {workspace === workspaceOptions('lists') && (
+            <div>
+              <button onClick={() => setModal(modalOptions('create_list'))}>Create List</button>
+            </div>
+          )}
+
+          {workspace === workspaceOptions('notes') && (
+            <div>
+              <button onClick={() => setModal(modalOptions('create_note'))}>Create Note</button>
+            </div>
+          )}
+        </div>
+      )}
     </StyledToolbox>
   )
 }

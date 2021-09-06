@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { GlobalStateContext } from '../util/GlobalState'
 
 import CreateList from '../modals/CreateList'
+import CreateNote from '../modals/Notes/CreateNote'
 
 export const ModalLayer = () => {
   const [ isOpen, setOpen ] = useState(false)
@@ -13,6 +14,7 @@ export const ModalLayer = () => {
   return (
     <StyledModalLayer isOpen={isOpen}>
       {modal === modalOptions('create_list') && <CreateList/>}
+      {modal === modalOptions('create_note') && <CreateNote/>}
     </StyledModalLayer>
   )
 }
