@@ -19,7 +19,7 @@ export const Toolbox = () => {
       onMouseLeave={() => setOpen(false)}
       >
       {isOpen && (
-        <div>
+        <div className='buttons'>
           {workspace === workspaceOptions('lists') && (
             <div>
               <button onClick={() => setModal(modalOptions('create_list'))}>Create List</button>
@@ -44,6 +44,27 @@ const StyledToolbox = styled.nav`
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   transition: 0.4s;
+
+  .buttons div {
+    display: flex;
+    flex-flow: nowrap column;
+    padding: 1rem;
+
+    button {
+      background-color: ${({ theme }) => theme.unselected};
+      margin: 0.4rem;
+      padding: 0.2rem;
+      border-radius: 0.2rem;
+      border: none;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.selected};
+        padding: 0.4rem;
+        cursor: pointer;
+      }
+    }
+  }
 `
 
 export default Toolbox

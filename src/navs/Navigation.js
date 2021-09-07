@@ -17,7 +17,7 @@ export const Navigation = () => {
       onMouseLeave={() => setOpen(false)}
       >
       {isOpen && (
-        <div>
+        <div className='buttons'>
           <button onClick={() => setWorkspace(workspaceOptions('lists'))}>Lists</button>
           <button onClick={() => setWorkspace(workspaceOptions('settings'))}>Settings</button>
           <button onClick={() => setWorkspace(workspaceOptions('treasury'))}>Treasury</button>
@@ -35,6 +35,27 @@ const StyledNavigation = styled.nav`
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   transition: 0.4s;
+
+  .buttons {
+    display: flex;
+    flex-flow: nowrap column;
+    padding: 1rem;
+
+    button {
+      background-color: ${({ theme }) => theme.unselected};
+      margin: 0.4rem;
+      padding: 0.2rem;
+      border-radius: 0.2rem;
+      border: none;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.selected};
+        padding: 0.4rem;
+        cursor: pointer;
+      }
+    }
+  }
 `
 
 export default Navigation
