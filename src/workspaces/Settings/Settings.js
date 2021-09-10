@@ -6,13 +6,15 @@ import { SettingsContext } from '../../util/Settings'
 const Settings = () => {
   const settings = useContext(SettingsContext)
   const { theme, setTheme } = settings.theme
+  const { serverURL, setServerURL } = settings.server
 
   const saveTheme = e => {
     e.preventDefault()
 
     const newSettings = {
       ...settings,
-      theme: theme
+      theme: theme,
+      serverURL: serverURL
     }
 
     localStorage.setItem('settings', JSON.stringify(newSettings))
@@ -91,6 +93,12 @@ const Settings = () => {
           value={theme.negative_affirmation}
         />
       </div>
+
+      <input
+        value={serverURL}
+        placeholder='Server URL'
+        onChange={e => setServerURL(() => e.target.value)}
+      />
 
       <button type='submit'>Save</button>
     </StyledSettings>

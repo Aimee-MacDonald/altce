@@ -10,8 +10,11 @@ export default ({ children }) => {
     negative_affirmation: '#000000'
   })
 
+  const [ serverURL, setServerURL ] = useState('http://localhost:1111')
+
   const settings = {
-    theme: { theme, setTheme }
+    theme: { theme, setTheme },
+    server: { serverURL, setServerURL }
   }
 
   return(

@@ -10,12 +10,17 @@ import Treasury from '../workspaces/Treasury/Treasury'
 import Notes from '../workspaces/Notes/Notes'
 
 export const WorkspaceLayer = () => {
-  const { theme, setTheme } = useContext(SettingsContext).theme
+  const settings =  useContext(SettingsContext)
+  const { theme, setTheme } = settings.theme
+  const { serverURL, setServerURL } = settings.server
   const { workspace, workspaceOptions } = useContext(GlobalStateContext).workspace
 
   useEffect(() => {
     const userSettings = JSON.parse(localStorage.getItem('settings'))
-    if(!!userSettings) setTheme(userSettings.theme)
+    if(!!userSettings) {
+      setTheme(userSettings.theme)
+      setServerURL(userSettings.server.serverURL)
+    }
   }, [])
 
   return (
