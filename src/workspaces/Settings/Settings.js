@@ -47,6 +47,18 @@ const Settings = () => {
       </div>
 
       <div>
+        <label>Modal</label>
+        <input
+          onChange={e => setTheme(() => ({
+            ...theme,
+            modal: e.target.value
+          }))}
+          type='color'
+          value={theme.modal}
+        />
+      </div>
+
+      <div>
         <label>Selected</label>
         <input
           onChange={e => setTheme(() => ({

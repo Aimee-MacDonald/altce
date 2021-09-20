@@ -4,13 +4,14 @@ export default ({ children }) => {
   const [ theme, setTheme ] = useState({
     background: '#000000',
     navs: '#000000',
+    modal: '#000000',
     selected: '#000000',
     unselected: '#000000',
     positive_affirmation: '#000000',
     negative_affirmation: '#000000'
   })
 
-  const [ serverURL, setServerURL ] = useState('http://localhost:1111')
+  const [ serverURL, setServerURL ] = useState('')
 
   const settings = {
     theme: { theme, setTheme },
