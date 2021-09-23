@@ -3,25 +3,39 @@ import styled from 'styled-components'
 import { v4 } from 'uuid'
 
 import { GlobalStateContext } from '../../util/GlobalState'
+import { SettingsContext } from '../../util/Settings'
+import { StatusContext } from '../../util/Status'
 
 const CreateNote = () => {
   const globalState = useContext(GlobalStateContext)
   const { setModal } = globalState.modal
   const { toggleRefreshNotes } = globalState.notes
+  const { serverURL } = useContext(SettingsContext).server
+  const { flashMessage } = useContext(StatusContext)
 
   const createNote = e => {
     e.preventDefault()
 
-    const notes = JSON.parse(localStorage.getItem('notes')) || []
-    localStorage.setItem('notes', JSON.stringify([
-      ...notes, {
-        _id: v4(),
-        title: e.target.title.value,
-        content: e.target.content.value
-      }
-    ]))
+    let newNote = {
+      _id: v4(),
+      _storage: 'local',
+      title: e.target.title.value,
+      content: e.target.content.value
+    }
 
-    toggleRefreshNotes()
+    fetch(`${serverURL}/api/notes`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newNote)
+    }).then(res => res.json())
+      .then(result => {if(result.status === 'ok') newNote._storage = 'database'})
+      .catch(error => flashMessage('Connection Error'))
+      .finally(() => {
+        const localNotes = JSON.parse(localStorage.getItem('notes')) || []
+        localStorage.setItem('notes', JSON.stringify([...localNotes, newNote]))
+        toggleRefreshNotes()
+      })
+
     setModal(0)
   }
 
